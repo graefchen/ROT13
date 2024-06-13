@@ -12,9 +12,9 @@ rot13 :: proc(s: string) -> string {
 	str: strings.Builder
 	for ch, i in s {
 		c: rune = ch
-		replace: for i, t in OUTPUT_TABLE {
+		replace: for i, t in INPUT_TABLE {
 			if ch == i {
-				c = utf8.rune_at_pos(INPUT_TABLE, t)
+				c = utf8.rune_at_pos(OUTPUT_TABLE, t)
 				break replace
 			}
 		}
@@ -32,7 +32,7 @@ main :: proc() {
 	for arg in os.args {
 		if arg == "-h" || arg == "--hh" {
 			usage()
-			return
+			os.exit(1)
 		}
 	}
 
@@ -62,6 +62,6 @@ main :: proc() {
 
 	if arg_len <= 1 {
 		usage()
-		return
+		os.exit(1)
 	}
 }

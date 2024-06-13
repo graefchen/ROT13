@@ -20,8 +20,6 @@ All Programms/Languages and more...
 
 ## Planned Languages
 
-- C
-- CPP
 - Go
 - Rust
 
