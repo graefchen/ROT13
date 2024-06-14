@@ -24,7 +24,10 @@ rot13 :: proc(s: string) -> string {
 }
 
 usage :: proc() {
-	fmt.printf("Usage: rot13: [options] [files]\n options: -h, --help: Print this help message\n")
+	fmt.fprintf(
+		os.stderr,
+		"Usage: rot13: [options] [files]\n options: -h, --help: Print this help message\n",
+	)
 }
 
 main :: proc() {
@@ -39,7 +42,7 @@ main :: proc() {
 	if arg_len >= 1 {
 		data, ok := os.read_entire_file(os.stdin, context.allocator)
 		if ok {
-			fmt.print(rot13(string(data)))
+			fmt.fprint(os.stdout, rot13(string(data)))
 			return
 		}
 		defer delete(data, context.allocator)
@@ -47,17 +50,17 @@ main :: proc() {
 
 	for arg in os.args[1:] {
 		if os.is_dir(arg) {
-			fmt.printfln("rot: %s: Is a directory", arg)
+			fmt.fprintfln(os.stderr, "rot: %s: Permission denied", arg)
 			continue
 		}
 		data, ok := os.read_entire_file(arg, context.allocator)
 		if !ok {
 			// could not read file
-			fmt.printfln("rot: couldn't read file: %s", arg)
-			return
+			fmt.fprintfln(os.stderr, "rot: couldn't read file: %s", arg)
+			continue
 		}
 		defer delete(data, context.allocator)
-		fmt.print(rot13(string(data)))
+		fmt.fprint(os.stdout, rot13(string(data)))
 	}
 
 	if arg_len <= 1 {
