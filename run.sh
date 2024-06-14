@@ -10,13 +10,14 @@ function build {
 }
 
 # RUNNING
-build "c" "clang ./src/c/main.c -o bin/c/rot.exe"
-build "odin" "odin build ./src/odin/ -out:bin/odin/rot.exe"
+build "c" "clang -fsanitize=address ./src/c/main.c -o bin/c/rot.exe"
+# build "c" "clang ./src/c/main.c -o bin/c/rot.exe"
+build "odin" "odin build -sanitize:address -file ./src/odin/ -out:bin/odin/rot.exe"
 
 # TODO: Make running.
 function testing {
 	echo -e "Testing the $fg_blue$1$reset programm"
-	bat ./text/poem.txt | ./bin/$1/rot.exe | ./bin/$1/rot.exe
+	cat ./text/poem.txt | ./bin/$1/rot.exe | ./bin/$1/rot.exe
 	# ./bin/$1/rot.exe ./text/poem.txt.encr ./text/ ./bin/c/main.exe
 	# echo "" | ./bin/$1/rot.exe
 }

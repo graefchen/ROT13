@@ -20,7 +20,7 @@ const char *OUTPUT_TABLE =
 
 void rot13(char *s) {
   for (; *s; s++) {
-    for (int i = 0; i < 54; i++) {
+    for (int i = 0; i < strlen(INPUT_TABLE); i++) {
       if (*s == INPUT_TABLE[i]) {
         *s = OUTPUT_TABLE[i];
         break;
@@ -29,7 +29,7 @@ void rot13(char *s) {
   }
 }
 
-void usage() {
+void usage(void) {
   fprintf(stderr,
           "Usage: rot13: [options] [files]\n options: -h, --help: Print this "
           "help message\n");
