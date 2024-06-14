@@ -31,15 +31,9 @@ All Programms/Languages and more...
 
 ## Planned Languages
 
+- C
 - Go
 - Rust
-
-## Omitted Languages
-
-### C / CPP
-
-Both are _sadly_ not working the same on Windows, Mac and Linux. And as I want
-to try to have cross compilability I am emitting them ... at least for now.
 
 ## Testing
 
