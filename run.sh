@@ -10,9 +10,9 @@ function build {
 }
 
 # RUNNING
-build "c" "clang -fsanitize=address ./src/c/main.c -o bin/c/rot.exe"
+build "c" "clang -O3 ./src/c/main.c -o bin/c/rot.exe"
 # build "c" "clang ./src/c/main.c -o bin/c/rot.exe"
-build "odin" "odin build -sanitize:address -file ./src/odin/ -out:bin/odin/rot.exe"
+build "odin" "odin build ./src/odin/ -o:aggressive -out:bin/odin/rot.exe"
 
 # TODO: Make running.
 function testing {
