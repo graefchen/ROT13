@@ -1,11 +1,26 @@
 #!/bin/bash
 
+fg_blue='\E[34m'
+reset='\E[0m'
+
+# TODO: Make building easier.
+function build {
+	echo -e "Building the $fg_blue$1$reset executable"
+	eval $2
+}
+
+# RUNNING
+build "c" "clang ./src/c/main.c -o bin/c/rot.exe"
+build "odin" "odin build ./src/odin/ -out:bin/odin/rot.exe"
+
 # TODO: Make running.
+function testing {
+	echo -e "Testing the $fg_blue$1$reset programm"
+	bat ./text/poem.txt | ./bin/$1/rot.exe | ./bin/$1/rot.exe
+	# ./bin/$1/rot.exe ./text/poem.txt.encr ./text/ ./bin/c/main.exe
+	# echo "" | ./bin/$1/rot.exe
+}
 
-./build.sh
-
-cat ./text/emily_dickinson_im_nobody.txt | ./bin/rot.exe
-
-cat ./text/test/emily_dickinson_im_nobody.txt | ./bin/rot.exe
-
-./bin/rot.exe ./text/emily_dickinson_im_nobody.txt ./text/test/emily_dickinson_im_nobody.txt
+# TESTING
+testing "c"
+testing "odin"
