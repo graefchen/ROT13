@@ -27,19 +27,27 @@ All Programms/Languages and more...
 
 ## Used Languages
 
+- C
 - Odin
+- Rust
 
 ## Planned Languages
 
-- C
+- Ada (?)
+- C# (?)
+- Dart
+- F# (?)
 - Go
-- Rust
+- Haskell
+- Zig (?)
 
 ## Testing
 
 ## Benchmarks
 
 _Thinking about using it with [hyperfine](https://github.com/sharkdp/hyperfine)_
+
+Just for fun.
 
 ## Contributions
 
