@@ -10,9 +10,10 @@ function build {
 }
 
 # RUNNING
-build "c" "clang -O3 ./src/c/main.c -o bin/c/rot.exe"
-build "rust" "rustc ./src/rust/main.rs --o bin/rust/rot.exe -O"
-build "odin" "odin build ./src/odin/ -o:aggressive -out:bin/odin/rot.exe"
+# build "c" "clang -O3 ./src/c/main.c -o bin/c/rot.exe"
+build "go" "go build -o bin/go/rot.exe src/go/main.go"
+# build "odin" "odin build ./src/odin/ -o:aggressive -out:bin/odin/rot.exe"
+# build "rust" "rustc ./src/rust/main.rs --o bin/rust/rot.exe -O"
 
 # TODO: Make running.
 function testing {
@@ -23,6 +24,7 @@ function testing {
 }
 
 # TESTING
-testing "c"
-testing "rust"
-testing "odin"
+# testing "c"
+testing "go"
+# testing "odin"
+# testing "rust"
