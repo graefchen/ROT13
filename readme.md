@@ -28,6 +28,7 @@ All Programms/Languages and more...
 ## Used Languages
 
 - C
+- Dart
 - Go
 - Odin
 - Rust
@@ -36,7 +37,6 @@ All Programms/Languages and more...
 
 - Ada (?)
 - C# (?)
-- Dart
 - F# (?)
 - Haskell
 - Zig (?)
