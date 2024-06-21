@@ -11,8 +11,9 @@ function build {
 
 # RUNNING
 # build "c" "clang -O3 ./src/c/main.c -o bin/c/rot.exe"
-build "dart" "dart compile exe src/dart/main.dart -o bin/dart/rot.exe"
+# build "dart" "dart compile exe src/dart/main.dart -o bin/dart/rot.exe"
 # build "go" "go build -o bin/go/rot.exe src/go/main.go"
+build "haskell" "ghc src/haskell/main.hs -outputdir bin/haskell -o bin/haskell/rot.exe"
 # build "odin" "odin build ./src/odin/ -o:aggressive -out:bin/odin/rot.exe"
 # build "rust" "rustc ./src/rust/main.rs --o bin/rust/rot.exe -O"
 
@@ -26,7 +27,8 @@ function testing {
 
 # TESTING
 # testing "c"
-testing "dart"
+# testing "dart"
 # testing "go"
+testing "haskell"
 # testing "odin"
 # testing "rust"
