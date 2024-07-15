@@ -43,9 +43,13 @@ int main(int argc, const char **argv) {
     }
   }
 
-  if (argc >= 0) {
+  if (argc <= 1) {
     char *data;
     data = read_file(stdin);
+    if (strcmp(data, "") == 0) {
+      usage();
+      return 1;
+    }
     rot13(data);
     fprintf(stdout, "%s", data);
     free(data);
@@ -69,11 +73,6 @@ int main(int argc, const char **argv) {
     rot13(data);
     fprintf(stdout, "%s", data);
     free(data);
-  }
-
-  if (argc <= 0) {
-    usage();
-    return 1;
   }
 
   return 0;
