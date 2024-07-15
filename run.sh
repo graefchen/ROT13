@@ -10,7 +10,7 @@ function build {
 }
 
 # RUNNING
-build "c" "clang -O3 ./src/c/main.c -o bin/c/rot.exe"
+build "c" "clang -O3 ./src/c/main.c -o bin/c/rot.exe -Wall -Werror -pedantic -fsanitize=address"
 # build "dart" "dart compile exe src/dart/main.dart -o bin/dart/rot.exe"
 # build "go" "go build -o bin/go/rot.exe src/go/main.go"
 # build "haskell" "ghc src/haskell/main.hs -outputdir bin/haskell -o bin/haskell/rot.exe"
@@ -20,10 +20,14 @@ build "c" "clang -O3 ./src/c/main.c -o bin/c/rot.exe"
 # TODO: Make running.
 function testing {
 	echo -e "Testing the $fg_blue$1$reset programm"
-	# cat ./text/poem.txt | ./bin/$1/rot.exe | ./bin/$1/rot.exe
-	./bin/$1/rot.exe ./text/poem.txt.encr
-	echo "Test" | ./bin/$1/rot.exe
-	./bin/$1/rot.exe
+	# FIX: C just ... doesn't want to work with the command below ...
+	# when it is in a bash script(?) ... it seems to follow a similar system
+	# like a coin throw -> sometimes it works, sometimes not
+	cat ./text/poem.txt | ./bin/$1/rot.exe | ./bin/$1/rot.exe
+	# cat ./text/poem.txt.encr | ./bin/$1/rot.exe
+	# ./bin/$1/rot.exe ./text/poem.txt.encr
+	# echo "Test" | ./bin/$1/rot.exe
+	# ./bin/$1/rot.exe
 }
 
 # TESTING

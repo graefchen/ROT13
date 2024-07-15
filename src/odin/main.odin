@@ -39,13 +39,17 @@ main :: proc() {
 		}
 	}
 
-	if arg_len >= 1 {
+	if arg_len <= 1 {
 		data, ok := os.read_entire_file(os.stdin, context.allocator)
 		if ok {
 			fmt.fprint(os.stdout, rot13(string(data)))
 			return
 		}
 		defer delete(data, context.allocator)
+	}
+	if arg_len <= 1 {
+		usage()
+		os.exit(1)
 	}
 
 	for arg in os.args[1:] {
@@ -61,10 +65,5 @@ main :: proc() {
 		}
 		defer delete(data, context.allocator)
 		fmt.fprint(os.stdout, rot13(string(data)))
-	}
-
-	if arg_len <= 1 {
-		usage()
-		os.exit(1)
 	}
 }

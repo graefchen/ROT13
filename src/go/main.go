@@ -25,7 +25,7 @@ func rot13(s string) string {
 }
 
 func usage() {
-	fmt.Fprintf(os.Stderr, "Usage: rot13: [options] [files]\n options: -h, --help: Print this help message")
+	fmt.Fprintf(os.Stderr, "Usage: rot13: [options] [files]\n options: -h, --help: Print this help message\n")
 }
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 		}
 	}
 
-	if arg_len >= 1 {
+	if arg_len <= 1 {
 		fi, err := os.Stdin.Stat()
 		if err != nil {
 			panic(err)
@@ -50,6 +50,9 @@ func main() {
 			str := string(stdin)
 			fmt.Fprintf(os.Stdout, rot13(str))
 			os.Exit(1)
+		} else {
+			usage()
+			os.Exit(1)
 		}
 	}
 
@@ -60,20 +63,16 @@ func main() {
 			panic(err)
 		}
 		if fileInfo.IsDir() {
-			fmt.Fprintf(os.Stderr, "rot: %s: Permission denied", arg)
+			fmt.Fprintf(os.Stderr, "rot: %s: Permission denied\n", arg)
 			continue
 		}
 		buffer, err := os.ReadFile(arg)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "rot: couldn't read file: %s", arg)
+			fmt.Fprintf(os.Stderr, "rot: couldn't read file: %s\n", arg)
 			continue
 		}
 		str := string(buffer)
 		fmt.Fprintf(os.Stdout, rot13(string(str)))
 	}
 
-	if arg_len <= 1 {
-		usage()
-		os.Exit(1)
-	}
 }

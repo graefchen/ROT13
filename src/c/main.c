@@ -48,6 +48,7 @@ int main(int argc, const char **argv) {
     data = read_file(stdin);
     if (strcmp(data, "") == 0) {
       usage();
+      free(data);
       return 1;
     }
     rot13(data);

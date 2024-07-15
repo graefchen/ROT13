@@ -36,7 +36,7 @@ fn main() {
         }
     }
 
-    if arg_len >= 1 {
+    if arg_len <= 1 {
         if !stdin().is_terminal() {
             let reader = BufReader::new(stdin().lock());
             let mut string = String::new();
@@ -45,6 +45,9 @@ fn main() {
             }
             print!("{}", rot13(string));
             exit(0);
+        } else {
+            usage();
+            exit(1)
         }
     }
 
@@ -63,10 +66,5 @@ fn main() {
                 continue;
             }
         }
-    }
-
-    if arg_len <= 1 {
-        usage();
-        exit(1)
     }
 }

@@ -33,7 +33,7 @@ Future<void> main(List<String> args) async {
     }
   }
 
-  if (arg_len >= 0) {
+  if (arg_len <= 0) {
     if (!stdin.hasTerminal) {
       // The following 11 lines are adapted from the `stdin.readLineSync()` function
       Encoding encoding = systemEncoding;
@@ -49,6 +49,9 @@ Future<void> main(List<String> args) async {
       String s = encoding.decode(line);
       stdout.write(rot13(s));
       exit(0);
+    } else {
+      usage();
+      exit(1);
     }
   }
 
